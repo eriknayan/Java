@@ -1,0 +1,47 @@
+/*Desenvolva um programa que leia um vetor de 20 posições inteiras e o coloque em ordem crescente, utilizando
+a seguinte estratégia de ordenação:
+• selecione o elemento do vetor de 20 posições que apresenta o key valor;
+• troque este elemento pelo primeiro;
+• repita estas operações, envolvendo agora apenas os 19 elementos restantes (trocando o de key valor com a
+segunda posição), depois os 18 elementos (trocando o de key valor com a terceira posição), depois os 17, 16
+e assim por diante, até restar um único elemento, o maior deles.
+Observação: este método de ordenação é conhecido como “Seleção Direta”.*/
+
+package Lista1;
+
+import java.util.Scanner;
+
+public class Ex8 {
+
+	public static void main(String[] args) {
+		
+		int t=20;
+		int[] vetor = new int[t];
+		Scanner teclado = new Scanner (System.in);
+		System.out.println("Digite 20 numeros inteiros: ");
+		do{
+			vetor[t-1] = teclado.nextInt();
+			t--;	
+		} while (t>0);
+		teclado.close();
+		t=20;
+		// insertion sort in place
+		for (int i=1; i<t; i++){
+			
+			int key = vetor[i];
+			int j = i;
+			
+			while ((j > 0) && (vetor[j-1] > key)){
+				vetor[j] = vetor[j-1];
+				j--;
+			}
+			vetor[j] = key;
+		}
+		//
+		for (int i=0; i<t; i++){
+			System.out.println(vetor[i]+" ");
+		}
+	
+	}
+
+}

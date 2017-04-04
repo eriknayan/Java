@@ -1,0 +1,72 @@
+
+import java.util.Scanner;
+
+public class Ex9 {
+
+	public static void main(String[] args) {
+		
+		int cont_lin = 0;
+		int cont_col = 0;
+		int n;
+		int lin = 0;
+		int maior=Integer.MIN_VALUE;
+		int menor=Integer.MAX_VALUE;
+		int[][] m = new int[4][4];
+		boolean repetido = false;
+		Scanner teclado = new Scanner (System.in);
+		System.out.println("Digite os 16 numeros da matriz: ");
+		do{
+			n = teclado.nextInt();
+			for (int i=0; i<=cont_lin; i++){
+				for (int j=0; j<=cont_col; j++){
+					if (n==m[i][j]){
+						repetido=true;
+						break;
+					}
+				}
+			}
+			if (repetido){
+				System.out.println("Numero repetido, digite novamente.");
+				repetido=false;
+			}
+			else{
+				m[cont_lin][cont_col]=n;
+				if (cont_col==3){
+					cont_col=0;
+					cont_lin++;
+				}
+				else{
+					cont_col++;
+				}
+
+			}
+		} while(cont_lin<m.length && cont_col<m.length);
+		teclado.close();
+		
+		for (int i=0; i<m.length; i++) {
+			for (int j=0; j < m[i].length; j++) {
+				if (m[i][j]>maior){
+					maior=m[i][j];
+					lin=i;
+				}
+			}
+		}
+		
+		for (int j=0; j<m.length; j++){
+			if (m[lin][j]<menor){
+				menor=m[lin][j];
+			}
+		}
+		
+		System.out.println("Matriz:");
+		for (int i=0; i<m.length; i++) {
+			for (int j=0; j < m[i].length; j++) {
+				System.out.print(m[i][j]+" ");	
+			}
+			System.out.println("");
+		}
+		
+		System.out.println("Menor valor da linha do maior valor: "+menor);
+	}
+
+}
